@@ -1,0 +1,90 @@
+
+<div class="container">
+  <h1 class="fst-italic text-center">Article</h1>
+  <div class="row">
+    <div class="col-sm-12">
+      <th >Article Title:</th>
+      <td><%= @article.title %></td>
+    </div>
+    <div class="col-sm-12">
+      <th >Image:</th>
+      <br>
+      <td><%= image_tag @article.image_url if @article.image %></td>
+    </div>
+    <div class="col-sm-12">
+    	 <div class="col-sm-4" style="width: 50px;float: left;">
+        <%= @article.likes.count %> 
+        <% like = current_user.likes.find_by(article: @article) %>
+        <% if like.nil? %>
+        <% button_to "Like" , likes_path, params: {likes: {article_id: @article.id}}, method: :post %>
+        <form action="/likes" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="like[article_id]" value="<%= @article.id%>">
+          <button type="submit" value="Like" class="btn" id="like" onclick="liked(event)"> <i class="fa fa-thumbs-up" ></i></button>
+          <!-- <input type="submit" value="Like"> -->
+        </form>
+        <% else %>
+        <% button_to "Unlike" , likes_path(like), method: :delete %>
+        <form action="<%= like_path(like)%>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" value="Unlike" class="btn "> <i class="fa fa-thumbs-up" style="color: blue;"></i></button>
+          <!-- <input type="submit" value="Unlike"> -->
+        </form>
+        <% end %>
+      </div>
+      <div class="col-sm-4">
+        <%= @article.dislikes.count %>
+        <% dislike = current_user.dislikes.find_by(article: @article) %>
+        <% if dislike.nil? %>
+        <% button_to "Dislike", @dislikes_path, params: {dislikes: {article_id: @article.id}}, method: :post%>
+
+        
+        <form action="/dislikes" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="dislike[article_id]" value="<%= @article.id%>">
+          <button type="submit" value="Dislike" class="btn " id="dislike" onclick="liked(event)"> <i class="fa fa-thumbs-down"></i></button>
+          <!-- <input type="submit" value="Dislike"> -->
+        </form>
+        <% else %>
+        <% button_to "UnDislike" , dislikes_path(dislike), method: :delete %>
+        <form action="<%= dislike_path(dislike)%>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" value="UnDislike" class="btn " > <i class="fa fa-thumbs-down" style="color: red;"></i></button>
+          <!-- <input type="submit" value="UnDislike"> -->
+        </form>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <th >Description :</th>
+      <td ><%= @article.description %></td>
+    </div>
+    <div class="col-sm-12">
+      <td>
+        <%= render @article.comments.where(parent_id: nil).includes(:user).order(id: :desc) %>
+      </td>
+      <a href="#" class="comment-form-display"> <i class="fa fa-comments" aria-hidden="true"></i></a>
+      <div class="comment-form" style="display: none;">
+        <%= render partial: "comments/form", locals: {article: @article, parent: nil} %>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <td ><% if current_user == @article.user %>
+        <%= link_to 'Edit', edit_article_path(@article),class: "btn btn-primary rounded-pill w-auto h-auto fst-italic " %> 
+        <%= button_to "Destroy", @article, method: :delete,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic " %>
+        <% end %>
+      </td>
+    </div>
+    <%= link_to "Back to articles", articles_path ,class: "btn btn-primary rounded-pill w-auto h-auto mb-1 fst-italic " %> 
+    <script >
+      document.querySelectorAll('.comment-form-display').forEach((el) => {el.addEventListener('click', (ev) => {
+        ev.preventDefault();
+        el.nextElementSibling.style = 'display: block;'
+      })
+      })  
+		</script>
+		
+  </div>
+</div>

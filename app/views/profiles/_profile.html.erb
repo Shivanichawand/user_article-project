@@ -1,0 +1,27 @@
+<!-- div id="<%= dom_id profile %>">
+</div> --> 
+<div class="container">
+  <div class="row" id="<%= dom_id profile %>">
+    <div class="col-sm-12">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td class="col-sm-3"><%= profile.name %></td>
+            <td class="col-sm-3"><%= profile.mobile %></td>
+            <td class="col-sm-3"><%= profile.bio %></td>
+            <td class="col-sm-3"><%= link_to 'View', profile_path(profile),class: "btn btn-primary rounded-pill w-auto h-auto fst-italic ",  style:"margin-left:20px"%> 
+              <% if current_user == profile.user %>
+              /<%= link_to 'Edit', edit_profile_path(profile),class: "btn btn-primary rounded-pill w-auto h-auto fst-italic " %>
+              <%= button_to "Destroy ", profile, method: :delete ,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic mt-3 ms-3"%>
+              <% end %>
+            </td>
+          </tr> 
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div> 
+
+
+

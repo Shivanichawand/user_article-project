@@ -1,0 +1,23 @@
+<div class="container">
+<h1 class="fst-italic text-center">Articles List</h1>
+<%= link_to "New article", new_article_path() ,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic mb-2"%>
+
+<%= link_to "My Profile", profiles_path() ,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic mb-2"%>
+
+<div class="row">
+  <table class="table table-hover ">
+    <thead>
+      <tr>
+        <th class="col-sm-3">Article Title:</th>
+        <th class="col-sm-3">Description :</th>
+        <th class="col-sm-3">Image  :</th>
+        <th class="col-sm-3">Action :</th>
+      </tr>
+    </thead>
+  </table>
+  <div id="articles">
+    <% @articles.each do |article| %>
+    <%= render article %>
+    <% end %>
+  </div>
+</div>

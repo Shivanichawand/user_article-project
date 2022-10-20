@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="fst-italic text-center">Profile</h1>
+
+<%#= render @profile %>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <th >User Name:</th>
+      <td><%= @profile.name %></td>
+    </div>
+    <div class="col-sm-12">
+      <th >Mobile No. :</th>
+      <td ><%= @profile.mobile %></td>
+    </div>
+     <div class="col-sm-12">
+      <th > Bio :</th>
+      <td ><%= @profile.bio %></td>
+    </div>
+  </div>
+<div>
+  <% if current_user == @profile.user %>
+  <%= link_to "Edit this profile", edit_profile_path(@profile) %> |
+  <%= link_to "Back to profiles", profiles_path %>
+
+  <%= button_to "Destroy this profile", @profile, method: :delete %>
+  <% end %>
+</div>
+</div>
+
+
+
+
+
+
+

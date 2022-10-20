@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="card bg-success w-75 rounded-4 m-auto">
+    <h3 class="fst-italic text-white text-center p-3 fs-2">Create Profile</h3>
+    <%# byebug %>
+    <% if !current_user.profile.present? %>
+    <%= render "form", profile: @profile %>
+    <% else %> 
+    <h4> You already created your profile </h4>
+    <% end %>
+    <br>
+
+    <div>
+      <%= link_to "Back to profile", profiles_path , class: "btn btn-primary rounded-pill w-auto  h-auto fst-italic ", style:"margin-left:100px"%>
+    </div>
+  </div>
+  <%#= render @profile %>
+</div>

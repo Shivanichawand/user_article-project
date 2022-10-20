@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-sm-12">
+    <td>
+      <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+      <p>
+        <% if !parent.nil? %> 
+        <%= form.hidden_field :parent_id, :value => parent.id %>
+        <% end %>
+        <%= form.label :description %><br>
+        <%= form.text_area :description %>
+      </p>
+      <p>
+        <%= form.submit %>
+      </p>
+      <% end %>
+    </td>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+
+<div class="container">
+  <h1 class="fst-italic text-center">My Profile</h1>
+  <div class="row">
+    <div class="col-sm-12">
+      <th >Name:</th>
+      <td><%= @user_profile.name %></td>
+    </div>
+    <div class="col-sm-12">
+      <th >Mobile :</th>
+      <td ><%= @user_profile.mobile %></td>
+    </div>
+     <div class="col-sm-12">
+      <th >Bio:</th>
+      <td ><%= @user_profile.bio %></td>
+    </div>
+    <div class="col-sm-12">
+      <td ><% if current_user == @user_profile.user %>
+        <%= link_to 'Edit', edit_user_profile_path(@user_profile),class: "btn btn-primary rounded-pill w-auto h-auto fst-italic " %> 
+        <%= button_to "Destroy", @user_profile, method: :delete,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic " %>
+        <% end %>
+      </td>
+    </div>
+    <%= link_to "Back to articles", articles_path ,class: "btn btn-primary rounded-pill w-auto h-auto mb-1 fst-italic " %>
+		
+  </div>
+</div>

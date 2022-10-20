@@ -1,0 +1,33 @@
+<%=form_with(model: user_profile) do |form|  %>
+<% if user_profile.errors.any? %>
+<div style="color: red">
+  <h2><%= pluralize(user_profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+  <ul>
+    <% user_profile.errors.each do |error| %>
+    <li><%= error.full_message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row mb-3 form-group text-center pt-3">
+  <%= form.label :name, "Name : ", style: "padding-left: 80px" , class: "col-sm-4 col-form-label fs-5 text-white" %>
+  <div class="col-sm-6">
+    <%= form.text_field :name ,placeholder: "Enter Your Name*", class: 'form-control w-blank h-30' %>
+  </div>
+</div>
+<div class="row mb-3 form-group text-center">
+  <%= form.label :mobile, "Mobile : ", style: "padding-left: 80px" , class: "col-sm-4 col-form-label fs-5  text-white" %>
+  <div class="col-sm-6">
+    <%= form.text_field :mobile,placeholder: "Enter Mobile No.*", class: 'form-control w-blank h-30'%>
+  </div>
+</div>
+<div class="row mb-3 form-group text-center">
+  <%= form.label :bio, "Bio : ", style: "padding-left: 80px" , class: "col-sm-4 col-form-label fs-5 text-white" %>
+  <div class="col-sm-6">
+    <%= form.text_field :bio, placeholder: "Enter Your  bio", class: 'form-control h-30' , style: "width: 340px"%>
+  </div>
+</div>
+<div>
+  <%= form.submit  class: "btn btn-primary rounded-pill w-auto h-auto fst-italic ", style:"margin-left:100px" %>
+</div>
+<% end %>

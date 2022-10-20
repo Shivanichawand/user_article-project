@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UserArticle</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    
+    <%#= fontawesome_stylesheet_link_tag %>
+    <%#= fontawesome_stylesheet_link_tag :netdna, force: true %>
+    <%#= fontawesome_stylesheet_link_tag :netdna, version: "3.2.1" %>
+    <!-- <script>
+        FontAwesomeConfig = {
+          mutateApproach: 'sync'
+        }
+      </script> -->
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- <script src="https://use.fontawesome.com/your-embed-code.js"></script> -->
+  </head>
+
+  <body>
+    <div class="row ">
+       <% if user_signed_in? %>
+          
+          <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' ,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic ", style: "margin:20px"%> 
+          <%= link_to "Sign Out", destroy_user_session_path, 'data-turbo-method': :delete,class: "btn btn-primary rounded-pill w-auto h-auto fst-italic ", style: "margin:20px"%>
+        
+        <% end %>
+       
+   
+    </div>
+        <%= yield %>
+  </body>
+</html>

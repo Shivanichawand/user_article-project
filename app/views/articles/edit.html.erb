@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="card bg-success w-75 rounded-4 m-auto">
+    <h3 class="fst-italic text-white text-center p-3 fs-2">Edit This Article</h3>
+    <%= render "form", article: @article %>
+    <br>
+    <div>
+      <%= link_to "Back to articles", articles_path , class: "btn btn-primary rounded-pill w-auto  h-auto fst-italic ", style:"margin-left:100px"%>
+    </div>
+  </div>
+</div>

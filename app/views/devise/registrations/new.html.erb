@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="card bg-info w-50 mx-auto rounded-4">
+    <h2 class="mx-auto fst-italic">Sign up</h2>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "form-signin"}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="form-group">
+      <%#= field_set_tag "Name" do %>
+      <%= f.label :name, "Name :", class: ' form-label ms-5 fst-italic'%>
+      <%= f.text_field :name, placeholder: "Enter Your Name*",autofocus: true, class: 'form-control w-75 h-25 mx-auto'%>
+    </div>
+    <div class="form-group">
+      <%= f.label :email ,"Email Address : ", class: 'form-label pt-1 ms-5 fst-italic'%>
+      <%= f.email_field :email, placeholder: "Enter Your Email Id*",autocomplete: "email", class: 'form-control w-75 h-25 mx-auto '%>
+    </div>
+    <div class="form-group">
+      <%= f.label :password,"Password : " , class: 'form-label pt-1 ms-5 fst-italic'%>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" , placeholder: "Enter Your Password*", class: 'form-control w-75 h-25 mx-auto' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation , "Password Confirmation :", class: 'form-label pt-1 ms-5 fst-italic'%>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" , placeholder: "Retype Your Password*", class: 'form-control w-75 h-25 mx-auto' %>
+    </div>
+    <div class="form-group mt-1">
+      <%= f.submit "Sign up", class: "btn btn-primary rounded-pill w-auto ms-5 fst-italic"%>
+    </div>
+    <% end %>
+    <div class="auth-links ms-5">
+      <%= render "devise/shared/links"%>
+    </div>
+  </div>
+</div>
